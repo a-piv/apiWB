@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+
+    <title>Получить API</title>
+  </head>
+  <body>
+    <div class="root">
+      <section class="section getApi">
+        <form name="getApiKey" class="form-apiBox">
+          <p class="formGetApi">
+          <label for="inputApii">Введите API-ключ: </label>
+          <textarea
+          name="inputApii"
+            class="inputApi"
+            placeholder="Введите API-ключ в формате x64 (старый API)"
+            autofocus
+            required
+            maxlength="50"
+          >
+</textarea
+          >
+        </p>
+        <p class="formGetApi">
+        <label for="dateApi">Дата: </label>
+          <input type="date" name="dateApi" value="2021-11-14" id="dateApi" />
+          
+        </p>  
+
+        <p class="formGetApi">
+          <label for="timeApi">Время: </label>
+          <input type="time" name="weeek" value="00:00" id="timeApi" />
+        </p>
+        <p class="formGetApi">
+          <button form="getApiKey" type="submit" class="buttonGetApi">
+            Получить
+          </button>
+        </p>
+        </form>
+      </section>
+
+      <section class="section product">
+        <!-- //Заголовок -->
+        <div class="card_stock cardHeader">
+          <div class="photo-card">
+            <h2 class="">Фото:</h2>
+          </div>
+          <div class="name-card">
+            <h2 class="">Название:</h2>
+          </div>
+          <div class="price-card">
+            <h2 class="">Цена:</h2>
+          </div>
+          <div class="quantity-card"><h2 class="">Колличество:</h2></div>
+        </div>
+        <div>
+          <ul class="card_list">
+            <li>
+              <div class="card_stock">
+                <div class="photo-card">
+                  <img
+                    class="photo-card_small"
+                    src="https://images.unsplash.com/photo-1636262987985-b7dd44f5fffa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
+                    alt=""
+                  />
+                </div>
+                <div class="name-card">
+                  <p class="name">
+                    Tanatum potes / Браслет мужской на руку из натуральный
+                    камней "Black eye" /Браслет из бусин камней агата
+                  </p>
+                  <p class="brand">Brand</p>
+                  <p class="nmid">Artikle: 1231312</p>
+                  <p class="supplierArticle">
+                    Артикул поставщика: asfasdf31321
+                  </p>
+                  <p class="Barcode">Баркод: <p class="barcodeApi">645646444</p></p>
+                  <p class="subject">Предмет: <p class="subjectApi">Браслет</p></p>
+                  <p class="category">Категория:</p>
+                  <p class="DaysOnSite">Дней на сайте: 21</p>
+                  <p class="lastChangeDate">Дата обновления 12.12.2021 12:40</p>
+                </div>
+                <div class="price-card">
+                  <p class="price-card_rub">2540</p>
+                </div>
+                <div class="quantity-card">
+                  <p class="quantityFull">Кол-во полное: 15</p>
+                  <p class="quantityNotInOrders">Кол-во не в заказе:13</p>
+                  <p class="inWayToClient">В пути к клиенту (штук)</p>
+                  <p class="inWayFromClient">В пути от клиента (штук)</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <template class="templateCard">
+          <div class="card_stock">
+            <div class="photo-card">
+              <img
+                class="photo-card_small"
+                src="https://images.unsplash.com/photo-1636262987985-b7dd44f5fffa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
+                alt=""
+              />
+            </div>
+            <div class="name-card">
+              <p class="name">
+                Tanatum potes / Браслет мужской на руку из натуральный камней
+                "Black eye" /Браслет из бусин камней агата
+              </p>
+              <p class="brand">Бренд: <b class="brandApi">Brand</b></p>
+              <p class="nmid">Артиукл WB:<b class="nmidAPI">1231312</b> </p>
+              <p class="supplierArticle">Артикул поставщика: <b class="supplierArticleAPI">asfasdf31321</b></p>
+              <p class="barcode">Баркод:<b class="barcodeApi">123</b></p>
+              <p class="techSize">Размер:<b class="techSizeApi">123</b></p>
+              
+              <p class="subject">Предмет:<b class="subjectApi">123</b></p>
+              <p class="category">Категория:<b class="categoryApi"></b></p>
+              <p class="warehouseName">Склад:<b class="warehouseNameApi"></b></p>
+              <p class="daysOnSite">Дней на сайте: <b class="daysOnSiteApi">21</b></p>
+              <p class="lastChangeDate">Дата обновления: <b class="lastChangeDateApi">12.12.2021 12:40</b></p>
+            </div>
+            <div class="price-card">
+              <p class="price-product">Цена: <b class="price-productApi">2552</b></p>
+              <p class="discount">Скидка: <b class="discountApi">80</b></p>
+              
+            </div>
+            <div class="quantity-card">
+              <p class="quantity">Кол-во для продажи: <b class="quantityAPI">15</b></p>
+              <p class="quantityFull">Кол-во полное: <b class="quantityFullApi">15</b></p>
+              <p class="quantityNotInOrders">Кол-во не в заказе: <b class="quantityNotInOrdersApi">13</b></p>
+              <p class="inWayToClient">В пути к клиенту: <b class="inWayToClientApi"></b></p>
+              <p class="inWayFromClient">В пути от клиента: <b class="inWayFromClientApi"></b></p>
+            </div>
+          </div>
+        </template>
+
+        <!-- Описание данных в API склада
+                  lastChangeDate дата и время обновления информации в сервисе
+                  supplierArticle ваш артикул
+                  techSize размер
+                  Barcode штрих-код
+                  Quantity кол-во, доступное для продажи
+                  isSupply договор поставки
+                  isRealization договор реализации
+                  quantityFull кол-во полное
+                  quantityNotInOrders кол-во не в заказе
+                  warehouseName название склада
+                  inWayToClient в пути к клиенту (штук)
+                  inWayFromClient в пути от клиента (штук)
+                  nmid код WB
+                  subject предмет
+                  category категория
+                  DaysOnSite кол-во дней на сайте
+                  brand бренд
+                  SCCode код контракта -->
+        <!-- фото / Название / цены / Остаток / Есил есть размер, сделать плашку с
+                  размерами -->
+      </section>
+
+      <button class="createCardButton">СОздать карточку</button>
+
+      <section class="ordersCard"></section>
+      <section class="salesCard"></section>
+
+      <script src="./js/script.js"></script>
+    </div>
+  </body>
+</html>

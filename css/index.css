@@ -1,0 +1,122 @@
+p {
+  margin: 0;
+}
+p b {
+  font-weight: normal;
+}
+
+/* .formGetApi {
+  display: flex;
+} */
+
+h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+li {
+  margin: 10px 0;
+}
+.inputApi {
+  font-family: Verdana, Arial, Helvetica, sans-serif; /* Семейство шрифта */
+  color: #336; /* Цвет текста */
+  width: 500px;
+}
+
+/* * {
+  box-sizing: border-box;
+}
+.product-table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+.product-tr {
+  display: table-row;
+}
+.product-td {
+  display: table-cell;
+  text-align: center;
+  border: none;
+  border: 1px solid #ccc;
+  vertical-align: middle;
+} */
+
+.form-apiBox {
+  display: flex;
+}
+.section {
+  border: 1px solid rgb(190, 190, 190);
+  margin: 0 0 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.product_card {
+  border: 1px solid rgb(190, 190, 190);
+  width: 100%;
+}
+
+.cardHeader {
+  background-color: aqua;
+  text-align: center;
+}
+
+.card_stock {
+  border: 1px solid black;
+  border-radius: 8px;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.photo-card {
+  width: 10%;
+}
+
+.photo-card_small {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.name-card {
+  width: 30%;
+  border: 1 px solid black;
+
+  padding-left: 10px;
+}
+
+.price-card {
+  width: 10%;
+  padding-left: 10px;
+}
+
+.price-card_rub::after {
+  content: " руб.";
+}
+
+.quantity-card {
+  padding-left: 10px;
+}
+
+.name {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.discount::after {
+  content: "%";
+}
+
+.inWayToClientApi::after {
+  content: " шт.";
+}
+
+.inWayFromClientApi::after {
+  content: " шт.";
+}
