@@ -13,34 +13,61 @@
       <section class="section getApi">
         <form name="getApiKey" class="form-apiBox">
           <p class="formGetApi">
-          <label for="inputApii">Введите API-ключ: </label>
-          <textarea
-          name="inputApii"
-            class="inputApi"
-            placeholder="Введите API-ключ в формате x64 (старый API)"
-            autofocus
-            required
-            maxlength="50"
-          >
-</textarea
-          >
-        </p>
-        <p class="formGetApi">
-        <label for="dateApi">Дата: </label>
-          <input type="date" name="dateApi" value="2021-11-14" id="dateApi" />
-          
-        </p>  
+            <label for="inputApii">Введите API-ключ: </label>
+            <textarea
+              name="inputApii"
+              class="inputApi"
+              placeholder="Введите API-ключ в формате x64 (старый API)"
+              autofocus
+              required
+              maxlength="80"
+            >
+            </textarea>
+          </p>
+          <p class="formGetApi">
+            <label for="dateApi">Дата: </label>
+            <input type="date" name="dateApi" value="2021-11-29" id="dateApi" />
+          </p>
 
-        <p class="formGetApi">
-          <label for="timeApi">Время: </label>
-          <input type="time" name="weeek" value="00:00" id="timeApi" />
-        </p>
-        <p class="formGetApi">
-          <button form="getApiKey" type="submit" class="buttonGetApi">
-            Получить
-          </button>
-        </p>
+          <p class="formGetApi">
+            <label for="timeApi">Время: </label>
+            <input type="time" name="weeek" value="00:00" id="timeApi" />
+          </p>
+
+          <p class="formGetApi">
+            <label for="timeApi">flag: </label>
+            <input
+              type="checkbox"
+              name="flag"
+              value="checked"
+              checked
+              id="flagApi"
+              class="flagApiClass"
+            />
+          </p>
         </form>
+        <div class="bottons-get">
+          <p class="formGetApi">
+            <button type="submit" class="buttonGetOrders button">
+              Получить "Заказы"
+            </button>
+          </p>
+          <p class="formGetApi">
+            <button type="submit" class="buttonGetSales button">
+              Получить "Продижи"
+            </button>
+          </p>
+          <p class="formGetApi">
+            <button type="submit" class="buttonGetStocks button">
+              Получить "Склад"
+            </button>
+          </p>
+          <!-- <p class="formGetApi">
+            <button type="submit" class="buttonGetTest button">
+              Test "Создать карточку"
+            </button>
+          </p> -->
+        </div>
       </section>
 
       <section class="section product">
@@ -59,7 +86,7 @@
         </div>
         <div>
           <ul class="card_list">
-            <li>
+            <!-- <li>
               <div class="card_stock">
                 <div class="photo-card">
                   <img
@@ -73,32 +100,60 @@
                     Tanatum potes / Браслет мужской на руку из натуральный
                     камней "Black eye" /Браслет из бусин камней агата
                   </p>
-                  <p class="brand">Brand</p>
-                  <p class="nmid">Artikle: 1231312</p>
+                  <p class="brand">Бренд: <b class="brandApi">Brand</b></p>
+                  <p class="nmid">Артиукл WB:<b class="nmidAPI">1231312</b></p>
                   <p class="supplierArticle">
-                    Артикул поставщика: asfasdf31321
+                    Артикул магазина:
+                    <b class="supplierArticleAPI">asfasdf31321</b>
                   </p>
-                  <p class="Barcode">Баркод: <p class="barcodeApi">645646444</p></p>
-                  <p class="subject">Предмет: <p class="subjectApi">Браслет</p></p>
-                  <p class="category">Категория:</p>
-                  <p class="DaysOnSite">Дней на сайте: 21</p>
-                  <p class="lastChangeDate">Дата обновления 12.12.2021 12:40</p>
+                  <p class="barcode">Штрихкод:<b class="barcodeApi">123</b></p>
+                  <p class="techSize">Размер:<b class="techSizeApi">123</b></p>
+
+                  <p class="subject">Предмет:<b class="subjectApi">123</b></p>
+                  <p class="category">Категория:<b class="categoryApi"></b></p>
+                  <p class="warehouseName">
+                    Склад:<b class="warehouseNameApi"></b>
+                  </p>
+                  <p class="daysOnSite">
+                    Дней на сайте: <b class="daysOnSiteApi">21</b>
+                  </p>
+                  <p class="lastChangeDate">
+                    Дата обновления:
+                    <b class="lastChangeDateApi">12.12.2021 12:40</b>
+                  </p>
                 </div>
                 <div class="price-card">
-                  <p class="price-card_rub">2540</p>
+                  <p class="price-product">
+                    Цена: <b class="price-productApi">2552</b>
+                  </p>
+                  <p class="discount">Скидка: <b class="discountApi">80</b></p>
+                  <p class="calculation">
+                    Итого: <b class="final-price formula">80</b>
+                  </p>
                 </div>
                 <div class="quantity-card">
-                  <p class="quantityFull">Кол-во полное: 15</p>
-                  <p class="quantityNotInOrders">Кол-во не в заказе:13</p>
-                  <p class="inWayToClient">В пути к клиенту (штук)</p>
-                  <p class="inWayFromClient">В пути от клиента (штук)</p>
+                  <p class="quantity">
+                    Кол-во для продажи: <b class="quantityAPI">15</b>
+                  </p>
+                  <p class="quantityFull">
+                    Кол-во полное: <b class="quantityFullApi">15</b>
+                  </p>
+                  <p class="quantityNotInOrders">
+                    Кол-во не в заказе: <b class="quantityNotInOrdersApi">13</b>
+                  </p>
+                  <p class="inWayToClient">
+                    В пути к клиенту: <b class="inWayToClientApi"></b>
+                  </p>
+                  <p class="inWayFromClient">
+                    В пути от клиента: <b class="inWayFromClientApi"></b>
+                  </p>
                 </div>
               </div>
             </li>
-          </ul>
+          </ul> -->
         </div>
 
-        <template class="templateCard">
+        <template class="templateCard-stocks">
           <div class="card_stock">
             <div class="photo-card">
               <img
@@ -113,60 +168,247 @@
                 "Black eye" /Браслет из бусин камней агата
               </p>
               <p class="brand">Бренд: <b class="brandApi">Brand</b></p>
-              <p class="nmid">Артиукл WB:<b class="nmidAPI">1231312</b> </p>
-              <p class="supplierArticle">Артикул поставщика: <b class="supplierArticleAPI">asfasdf31321</b></p>
-              <p class="barcode">Баркод:<b class="barcodeApi">123</b></p>
-              <p class="techSize">Размер:<b class="techSizeApi">123</b></p>
-              
+              <p class="nmid">Артиукл WB:<b class="nmidAPI">1231312</b></p>
+              <p class="supplierArticle">
+                Артикул магазина:
+                <b class="supplierArticleAPI">asfasdf31321</b>
+              </p>
+              <p class="barcode">Штрихкод:<b class="barcodeApi">123</b></p>
               <p class="subject">Предмет:<b class="subjectApi">123</b></p>
               <p class="category">Категория:<b class="categoryApi"></b></p>
-              <p class="warehouseName">Склад:<b class="warehouseNameApi"></b></p>
-              <p class="daysOnSite">Дней на сайте: <b class="daysOnSiteApi">21</b></p>
-              <p class="lastChangeDate">Дата обновления: <b class="lastChangeDateApi">12.12.2021 12:40</b></p>
+              <p class="techSize">Размер:<b class="techSizeApi">123</b></p>
+              <p class="warehouseName">
+                Склад:<b class="warehouseNameApi"></b>
+              </p>
+              <p class="daysOnSite">
+                Дней на сайте: <b class="daysOnSiteApi">21</b>
+              </p>
+              <p class="lastChangeDate">
+                Дата обновления:
+                <b class="lastChangeDateApi">12.12.2021 12:40</b>
+              </p>
             </div>
             <div class="price-card">
-              <p class="price-product">Цена: <b class="price-productApi">2552</b></p>
+              <p class="price-product">
+                Цена: <b class="price-productApi">2552</b>
+              </p>
               <p class="discount">Скидка: <b class="discountApi">80</b></p>
-              
+              <p class="calculation">
+                Итого: <b class="final-price formula">80</b>
+              </p>
             </div>
             <div class="quantity-card">
-              <p class="quantity">Кол-во для продажи: <b class="quantityAPI">15</b></p>
-              <p class="quantityFull">Кол-во полное: <b class="quantityFullApi">15</b></p>
-              <p class="quantityNotInOrders">Кол-во не в заказе: <b class="quantityNotInOrdersApi">13</b></p>
-              <p class="inWayToClient">В пути к клиенту: <b class="inWayToClientApi"></b></p>
-              <p class="inWayFromClient">В пути от клиента: <b class="inWayFromClientApi"></b></p>
+              <p class="quantity">
+                Кол-во для продажи: <b class="quantityAPI">15</b>
+              </p>
+              <p class="quantityFull">
+                Кол-во полное: <b class="quantityFullApi">15</b>
+              </p>
+              <p class="quantityNotInOrders">
+                Кол-во не в заказе: <b class="quantityNotInOrdersApi">13</b>
+              </p>
+              <p class="inWayToClient">
+                В пути к клиенту: <b class="inWayToClientApi"></b>
+              </p>
+              <p class="inWayFromClient">
+                В пути от клиента: <b class="inWayFromClientApi"></b>
+              </p>
             </div>
           </div>
         </template>
 
-        <!-- Описание данных в API склада
-                  lastChangeDate дата и время обновления информации в сервисе
-                  supplierArticle ваш артикул
-                  techSize размер
-                  Barcode штрих-код
-                  Quantity кол-во, доступное для продажи
-                  isSupply договор поставки
-                  isRealization договор реализации
-                  quantityFull кол-во полное
-                  quantityNotInOrders кол-во не в заказе
-                  warehouseName название склада
-                  inWayToClient в пути к клиенту (штук)
-                  inWayFromClient в пути от клиента (штук)
-                  nmid код WB
-                  subject предмет
-                  category категория
-                  DaysOnSite кол-во дней на сайте
-                  brand бренд
-                  SCCode код контракта -->
-        <!-- фото / Название / цены / Остаток / Есил есть размер, сделать плашку с
-                  размерами -->
+        <template class="templateCard-sales">
+          <div class="card_stock">
+            <div class="photo-card">
+              <img
+                class="photo-card_small"
+                src="https://images.unsplash.com/photo-1636262987985-b7dd44f5fffa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
+                alt=""
+              />
+            </div>
+
+            <div class="name-card">
+              <p class="brand">Бренд: <b class="brandApi">brand</b></p>
+              <p class="nmId">Артикул: <b class="nmIdApi">nmId</b></p>
+              <p class="barcode">Штрихкод: <b class="barcodeApi">barcode</b></p>
+
+              <p class="category">
+                category: <b class="categoryApi">category</b>
+              </p>
+              <p class="countryName">
+                Страна: <b class="countryNameApi">countryName</b>
+              </p>
+              <p class="regionName">
+                Регион: <b class="regionNameApi">regionName</b>
+              </p>
+              <p class="oblastOkrugName">
+                Округ:
+                <b class="oblastOkrugNameApi">oblastOkrugName</b>
+              </p>
+              <p class="warehouseName">
+                Склад отгрузки: <b class="warehouseNameApi">warehouseName</b>
+              </p>
+              <p class="subject">Предмет: <b class="subjectApi">subject</b></p>
+              <p class="supplierArticle">
+                Артикул магазина:
+                <b class="supplierArticleApi">supplierArticle</b>
+              </p>
+              <p class="techSize">
+                Размер: <b class="techSizeApi">techSize</b>
+              </p>
+            </div>
+            <div class="price-card">
+              <p class="discountPercent">
+                Согласованная скидка на товар:
+                <b class="discountPercentApi">discountPercent</b>
+              </p>
+              <p class="finishedPrice">
+                Фактическая цена из заказа (с учетом всех скидок, включая и от
+                ВБ):
+                <b class="finishedPriceApi">finishedPrice</b>
+              </p>
+              <p class="forPay">
+                К перечислению поставщику: <b class="forPayApi">forPay</b>
+              </p>
+
+              <p class="spp">
+                Скидка Постоянного Покупателя: <b class="sppApi">spp</b>
+              </p>
+
+              <p class="totalPrice">
+                Начальная розничная цена товара:
+                <b class="totalPriceApi">totalPrice</b>
+              </p>
+            </div>
+            <div class="quantity-card">
+              <p class="saleID">
+                Номер продажи: <b class="saleIDApi">saleID</b>
+              </p>
+              <p class="date">Дата продажи: <b class="dateApi">date</b></p>
+              <p class="gNumber">
+                Номер заказа: <b class="gNumberApi">gNumber</b>
+              </p>
+              <p class="incomeID">
+                Номер поставки: <b class="incomeIDApi">incomeID</b>
+              </p>
+              <p class="isRealization">
+                Договор реализации:
+                <b class="isRealizationApi">isRealization</b>
+              </p>
+              <p class="IsStorno">
+                IsStorno: <b class="IsStornoApi">IsStorno</b>
+              </p>
+              <p class="isSupply">
+                Договор поставки: <b class="isSupplyApi">isSupply</b>
+              </p>
+              <p class="lastChangeDate">
+                Дата время обновления информации в сервисе:
+                <b class="lastChangeDateApi">lastChangeDate</b>
+              </p>
+
+              <p class="odid">
+                Уникальный идентификатор позиции заказа:
+                <b class="odidApi">odid</b>
+              </p>
+              <p class="orderId">
+                Номер исходного заказа ("Номер заказа" из сервиса "Заказы"):
+                <b class="orderIdApi">orderId</b>
+              </p>
+              <p class="priceWithDisc">
+                Цена, от которой считается вознаграждение поставщика forpay (с
+                учетом всех согласованных скидок):
+                <b class="priceWithDiscApi">priceWithDisc</b>
+              </p>
+              <p class="promoCodeDiscount">
+                Промокод:
+                <b class="promoCodeDiscountApi">promoCodeDiscount</b>
+              </p>
+              <p class="quantity">
+                Кол-во: <b class="quantityApi">quantity</b>
+              </p>
+
+              <p class="number">
+                Номер документа: <b class="numberApi">number</b>
+              </p>
+            </div>
+          </div>
+        </template>
+
+        <template class="templateCard-orders">
+          <div class="card_stock">
+            <div class="photo-card">
+              <img
+                class="photo-card_small"
+                src="https://images.unsplash.com/photo-1636262987985-b7dd44f5fffa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
+                alt=""
+              />
+            </div>
+
+            <div class="name-card">
+              <p class="brand">Бренд: <b class="brandApi">brand</b></p>
+              <p class="nmId">Артикул: <b class="nmIdApi">nmId</b></p>
+              <p class="barcode">Штрихкод: <b class="barcodeApi">barcode</b></p>
+              <p class="category">
+                Категория: <b class="categoryApi">category</b>
+              </p>
+              <p class="oblast">Область: <b class="oblastApi">oblast</b></p>
+              <p class="warehouseName">
+                Склад отгрузки: <b class="warehouseNameApi">warehouseName</b>
+              </p>
+              <p class="subject">Предмет: <b class="subjectApi">subject</b></p>
+              <p class="supplierArticle">
+                Артикул магазина:
+                <b class="supplierArticleApi">supplierArticle</b>
+              </p>
+              <p class="techSize">
+                Размер: <b class="techSizeApi">techSize</b>
+              </p>
+            </div>
+            <div class="price-card">
+              <p class="totalPrice">
+                Цена до согласованной скидки/промо/спп: <b class="totalPriceApi">totalPrice</b>
+              </p>
+            </div>
+            <div class="quantity-card">
+              <p class="cancel_dt">
+                cancel_dt: <b class="cancel_dtApi">cancel_dt</b>
+              </p>
+
+              <p class="date">date: <b class="dateApi">date</b></p>
+              <p class="discountPercent">
+                discountPercent:
+                <b class="discountPercentApi">discountPercent</b>
+              </p>
+              <p class="gNumber">gNumber: <b class="gNumberApi">gNumber</b></p>
+              <p class="incomeID">
+                Номер поставки: <b class="incomeIDApi">incomeID</b>
+              </p>
+              <p class="isCancel">
+                isCancel: <b class="isCancelApi">isCancel</b>
+              </p>
+              <p class="lastChangeDate">
+                lastChangeDate: <b class="lastChangeDateApi">lastChangeDate</b>
+              </p>
+
+              <p class="number">number: <b class="numberApi">number</b></p>
+
+              <p class="odid">odid: <b class="odidApi">odid</b></p>
+              <p class="quantity">
+                Кол-во: <b class="quantityApi">quantity</b>
+              </p>
+            </div>
+          </div>
+        </template>
       </section>
 
-      <button class="createCardButton">СОздать карточку</button>
+      <!-- <button class="createCardButton">СОздать карточку</button> -->
 
       <section class="ordersCard"></section>
       <section class="salesCard"></section>
-
+      <section>
+        <span class="formula">Так</span> выделены параметры, которые
+        расчитываются из данных в апи (самого числа нет в API).
+      </section>
       <script src="./js/script.js"></script>
     </div>
   </body>
