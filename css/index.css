@@ -15,9 +15,9 @@ h2 {
 }
 
 ul {
-  margin: 0;
+  margin: 0 0 0 20px;
   padding: 0;
-  list-style: none;
+  list-style: order;
 }
 li {
   margin: 10px 0;
@@ -50,6 +50,15 @@ li {
 .form-apiBox {
   display: flex;
 }
+
+.bottons-get {
+  display: flex;
+  margin-top: 15px;
+}
+.button {
+  margin-right: 15px;
+}
+
 .section {
   border: 1px solid rgb(190, 190, 190);
   margin: 0 0 10px;
@@ -68,15 +77,48 @@ li {
 }
 
 .card_stock {
-  border: 1px solid black;
-  border-radius: 8px;
   display: flex;
   justify-content: flex-start;
   margin-top: 10px;
 }
 
+.card_stocks {
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: rgb(223, 223, 223);
+}
+
+.card_orders {
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: rgb(255, 251, 191);
+}
+
+.card_sales {
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: rgb(198, 255, 145);
+}
+.card_sales_refund {
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: rgb(255, 145, 145);
+}
+
+.buttonGetOrders {
+  background-color: rgb(255, 251, 191);
+}
+
+.buttonGetSales {
+  background-color: rgb(198, 255, 145);
+}
+.buttonGetStocks {
+  background-color: rgb(204, 204, 204);
+}
+
 .photo-card {
-  width: 10%;
+  max-width: 75px;
+  margin: 15px;
 }
 
 .photo-card_small {
@@ -85,14 +127,14 @@ li {
 }
 
 .name-card {
-  width: 30%;
+  width: 20%;
   border: 1 px solid black;
 
   padding-left: 10px;
 }
 
 .price-card {
-  width: 10%;
+  width: 30%;
   padding-left: 10px;
 }
 
@@ -119,4 +161,8 @@ li {
 
 .inWayFromClientApi::after {
   content: " шт.";
+}
+
+.formula {
+  color: rgb(255, 0, 0);
 }
