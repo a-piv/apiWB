@@ -13,19 +13,19 @@
       <section class="section getApi">
         <form name="getApiKey" class="form-apiBox">
           <p class="formGetApi">
-            <label for="inputApii">Введите API-ключ: </label>
-            <textarea
+            <label for="inputApii">Введите API-ключ WB: </label>
+            <input
               name="inputApii"
               class="inputApi"
-              placeholder="Введите API-ключ в формате x64 (старый API)"
+              placeholder="Введите API-ключ WB в формате x64 (старый API)"
               autofocus
               required
               maxlength="80"
             >
-            </textarea>
+            </input>
           </p>
           <p class="formGetApi">
-            <label for="dateApi">Дата: </label>
+            <label for="dateApiHeader">Дата: </label>
             <input type="date" name="dateApi" value="2021-11-29" id="dateApi" />
           </p>
 
@@ -35,11 +35,10 @@
           </p>
 
           <p class="formGetApi">
-            <label for="timeApi">flag: </label>
+            <label for="flagApi">Только за этот день </label>
             <input
               type="checkbox"
               name="flag"
-              value="checked"
               checked
               id="flagApi"
               class="flagApiClass"
@@ -68,11 +67,15 @@
             </button>
           </p> -->
         </div>
+        <div class="apiInfo">
+          <ul class="apiInfo_all">  </ul>
+        </div>
       </section>
 
       <section class="section product">
         <!-- //Заголовок -->
         <div class="card_stock cardHeader">
+          <div class="number-card"></div>
           <div class="photo-card">
             <h2 class="">Фото:</h2>
           </div>
@@ -155,17 +158,18 @@
 
         <template class="templateCard-stocks">
           <div class="card_stock">
+            <div class="number-card"></div>
             <div class="photo-card">
+              <a href="" target="_blank" class="photo-card-href">
               <img
                 class="photo-card_small"
                 src="https://images.unsplash.com/photo-1636262987985-b7dd44f5fffa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
                 alt=""
-              />
+              /></a>
             </div>
             <div class="name-card">
               <p class="name">
-                Tanatum potes / Браслет мужской на руку из натуральный камней
-                "Black eye" /Браслет из бусин камней агата
+                Браслет мужской
               </p>
               <p class="brand">Бренд: <b class="brandApi">Brand</b></p>
               <p class="nmid">Артиукл WB:<b class="nmidAPI">1231312</b></p>
@@ -219,12 +223,14 @@
 
         <template class="templateCard-sales">
           <div class="card_stock">
+            <div class="number-card"></div>
             <div class="photo-card">
+              <a href="" target="_blank" class="photo-card-href">
               <img
                 class="photo-card_small"
                 src="https://images.unsplash.com/photo-1636262987985-b7dd44f5fffa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
                 alt=""
-              />
+              /></a>
             </div>
 
             <div class="name-card">
@@ -336,12 +342,14 @@
 
         <template class="templateCard-orders">
           <div class="card_stock">
-            <div class="photo-card">
+            <div class="number-card"></div>
+            <div class="photo-card"> <a href="" target="_blank" class="photo-card-href">
               <img
                 class="photo-card_small"
                 src="https://images.unsplash.com/photo-1636262987985-b7dd44f5fffa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80"
                 alt=""
               />
+            </a>
             </div>
 
             <div class="name-card">
@@ -370,29 +378,30 @@
               </p>
             </div>
             <div class="quantity-card">
-              <p class="cancel_dt">
-                cancel_dt: <b class="cancel_dtApi">cancel_dt</b>
-              </p>
+       
 
-              <p class="date">date: <b class="dateApi">date</b></p>
+              <p class="date">Дата заказа: <b class="dateApi">date</b></p>
               <p class="discountPercent">
-                discountPercent:
+                Согласованный итоговый дисконт:
                 <b class="discountPercentApi">discountPercent</b>
               </p>
-              <p class="gNumber">gNumber: <b class="gNumberApi">gNumber</b></p>
+              <p class="gNumber">(номер заказа) gNumber: <b class="gNumberApi">gNumber</b></p>
               <p class="incomeID">
                 Номер поставки: <b class="incomeIDApi">incomeID</b>
               </p>
               <p class="isCancel">
                 isCancel: <b class="isCancelApi">isCancel</b>
               </p>
+              <p class="cancel_dt">
+                Дата отмены (cancel_dt): <b class="cancel_dtApi">cancel_dt</b>
+              </p>
               <p class="lastChangeDate">
-                lastChangeDate: <b class="lastChangeDateApi">lastChangeDate</b>
+                Дата обновления: <b class="lastChangeDateApi">lastChangeDate</b>
               </p>
 
-              <p class="number">number: <b class="numberApi">number</b></p>
+              <p class="number">Номер заказа: <b class="numberApi">number</b></p>
 
-              <p class="odid">odid: <b class="odidApi">odid</b></p>
+              <p class="odid">Уникальный идентификатор позиции заказа: <b class="odidApi">odid</b></p>
               <p class="quantity">
                 Кол-во: <b class="quantityApi">quantity</b>
               </p>
