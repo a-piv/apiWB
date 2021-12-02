@@ -14,18 +14,33 @@ h2 {
   font-size: 20px;
 }
 
-ul {
-  margin: 0 0 0 20px;
+.card_list {
   padding: 0;
-  list-style: order;
+  list-style: none;
 }
 li {
   margin: 10px 0;
+}
+
+.number-card {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
 }
 .inputApi {
   font-family: Verdana, Arial, Helvetica, sans-serif; /* Семейство шрифта */
   color: #336; /* Цвет текста */
   width: 500px;
+}
+
+.formGetApi {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.apiInfo_all {
+  list-style-type: disc;
 }
 
 /* * {
@@ -119,6 +134,8 @@ li {
 .photo-card {
   max-width: 75px;
   margin: 15px;
+  display: flex;
+  align-items: center;
 }
 
 .photo-card_small {
