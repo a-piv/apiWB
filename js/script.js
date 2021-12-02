@@ -43,8 +43,9 @@ const SCCode = document.querySelector(".SCCode");
 const timeApi = document.querySelector("#timeApi");
 console.log(timeApi.value);
 
+const apiInfo_all = document.querySelector(".apiInfo_all");
 // const inputApi = document.querySelector(".inputApi").value;
-const dateApi = document.querySelector("#dateApi").value;
+
 const buttonGetStocks = document.querySelector(".buttonGetStocks");
 const buttonGetOrders = document.querySelector(".buttonGetOrders");
 const buttonGetSales = document.querySelector(".buttonGetSales");
@@ -77,16 +78,30 @@ const imageArt = "https://img1.wbstatic.net/tm/new/";
 //   // .catch((result) => console.log("Ошибка HTTP: " + response.status));
 // }
 
+//Проверяем флаг
+let flagApi = document.getElementById("flagApi");
+let flag = "1";
+flagApi.addEventListener("click", function (event) {
+  if (event.target.checked) {
+    return (flag = 1);
+  } else {
+    return (flag = 0);
+  }
+});
+// flagApi.value == "checked" ? (flagApi = 1) : (flagApi = 0);
+
 // let response = fetch(stockURL);
 // console.log(response);
 
+// Проверка выбора чекбокса
+
 // Рабочая функция которая достаёт API
 function getJson(method) {
+  const dateApi = document.querySelector("#dateApi").value;
   const api = document.querySelector(".inputApi").value;
-  // let flagApi = document.querySelector(".flagApiClass");
-  // flagApi.value == "checked" ? (flagApi = 1) : (flagApi = 0);
-  // console.log(flagApi.value);
-  const stockURL = `https://suppliers-stats.wildberries.ru/api/v1/supplier/${method}?dateFrom=${dateApi}T00:00:00.000Z&flag=0&key=${api}`;
+
+  console.log(flag);
+  const stockURL = `https://suppliers-stats.wildberries.ru/api/v1/supplier/${method}?dateFrom=${dateApi}T00:00:00.000Z&flag=${flag}&key=${api}`;
   console.log(stockURL);
   console.log(method);
   const xhr = new XMLHttpRequest();
@@ -97,17 +112,20 @@ function getJson(method) {
     xhr.status >= 400 ? console.log("Ошибка!") : (api = xhr.response);
     console.log(method);
     console.log(typeof method);
-
+    console.log(api.length);
     // createCardStock(api, method);
     if (method == "stocks") {
       console.log("Метод склад");
-      createCardStock(api, stocks);
+      createCardStock(api);
+      itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего товаров");
     } else if (method == "orders") {
       console.log("Метод заказы");
-      createCardOrders(api, orders);
+      createCardOrders(api);
+      itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего заказов");
     } else if (method == "sales") {
-      console.log("Метод продижи");
-      createCardSales(api, sales);
+      console.log("Метод продажи");
+      createCardSales(api);
+      itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего продаж и возвратов");
     } else {
       console.log("Не понятный метод");
     }
@@ -376,14 +394,22 @@ const cardList = document.querySelector(".card_list");
 
 function createCardStock(api, method) {
   //  console.log(li);
-  const template = `templateCard-${method}`;
 
   console.log(api);
-  api.forEach(function (params) {
+  api.forEach(function (params, i) {
     let nmid = params.nmId + "";
 
-    const cardTemplate = document.querySelector(`.${template}`).content;
-    console.log(cardTemplate);
+    const cardTemplate = document.querySelector(".templateCard-stocks").content;
+    console.log(cardTemplate.querySelector(".photo-card-href"));
+
+    cardTemplate
+      .querySelector(".photo-card-href")
+      .setAttribute(
+        "href",
+        `https://www.wildberries.ru/catalog/${params.nmId}/detail.aspx`
+      );
+
+    cardTemplate.querySelector(".number-card").textContent = `${i + 1}.`;
     let image = `${imageArt}${nmid.substring(0, 4)}0000/${params.nmId}-1.jpg`;
     console.log(image);
     cardTemplate.querySelector(".photo-card_small").src = `${image}`;
@@ -432,15 +458,20 @@ function createCardStock(api, method) {
   });
 }
 
-function createCardSales(api, method) {
-  const template = `templateCard-${method}`;
-
+function createCardSales(api) {
   console.log(api);
-  api.forEach(function (params) {
+  api.forEach(function (params, i) {
     let nmid = params.nmId + "";
     console.log(params.nmId);
 
-    const cardTemplate = document.querySelector(`.${template}`).content;
+    const cardTemplate = document.querySelector(".templateCard-sales").content;
+    cardTemplate.querySelector(".number-card").textContent = `${i + 1}.`;
+    cardTemplate
+      .querySelector(".photo-card-href")
+      .setAttribute(
+        "href",
+        `https://www.wildberries.ru/catalog/${params.nmId}/detail.aspx`
+      );
 
     let image = `${imageArt}${nmid.substring(0, 4)}0000/${params.nmId}-1.jpg`;
     console.log(image);
@@ -508,11 +539,19 @@ function createCardOrders(api) {
   const template = `templateCard-orders`;
   console.log(template);
   console.log(api);
-  api.forEach(function (params) {
+  api.forEach(function (params, i) {
     let nmid = params.nmId + "";
     console.log(params.nmId);
 
     const cardTemplate = document.querySelector(`.${template}`).content;
+
+    cardTemplate.querySelector(".number-card").textContent = `${i + 1}.`;
+    cardTemplate
+      .querySelector(".photo-card-href")
+      .setAttribute(
+        "href",
+        `https://www.wildberries.ru/catalog/${params.nmId}/detail.aspx`
+      );
     console.log(cardTemplate);
     let image = `${imageArt}${nmid.substring(0, 4)}0000/${params.nmId}-1.jpg`;
     console.log(image);
@@ -554,6 +593,18 @@ function createCardOrders(api) {
     cardList.append(li);
   });
 }
+
+function itogInfoApi(selector, api, date, flag, text) {
+  let list = document.createElement("li");
+
+  if (flag) {
+    list.textContent = `${text} за ${date}: ${api.length} шт.`;
+  } else {
+    list.textContent = `${text} c ${date} по настоящее время: ${api.length} шт.`;
+  }
+  selector.append(list);
+}
+
 // const createCardButton = document.querySelector(".createCardButton");
 // createCardButton.addEventListener("click", createCard);
 
