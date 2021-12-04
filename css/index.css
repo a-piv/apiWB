@@ -18,6 +18,7 @@ h2 {
   padding: 0;
   list-style: none;
 }
+
 li {
   margin: 10px 0;
 }
@@ -109,15 +110,19 @@ li {
   background-color: rgb(255, 251, 191);
 }
 
-.card_sales {
+.card_li {
   border: 1px solid black;
   border-radius: 8px;
+}
+
+.card_sales {
   background-color: rgb(198, 255, 145);
 }
 .card_sales_refund {
-  border: 1px solid black;
-  border-radius: 8px;
   background-color: rgb(255, 145, 145);
+}
+.card_sales_doplata {
+  background-color: rgb(68, 126, 45);
 }
 
 .buttonGetOrders {
@@ -131,6 +136,10 @@ li {
   background-color: rgb(204, 204, 204);
 }
 
+.secondaryInfo {
+  list-style: none;
+  margin: 5px 0 0 20px;
+}
 .photo-card {
   max-width: 75px;
   margin: 15px;
