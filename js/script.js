@@ -56,6 +56,9 @@ const sales = "sales";
 const orders = "orders";
 const stocks = "stocks";
 
+let inWayToClientCounter = 0;
+let inWayFromClientCounter = 0;
+
 // document.querySelector(".buttonGetTest").addEventListener("click", () => {
 //   console.log("чик");
 // });
@@ -118,6 +121,9 @@ function getJson(method) {
       console.log("Метод склад");
       createCardStock(api);
       itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего товаров");
+      // console.log(inWayToClientCounter, inWayFromClientCounter);
+      generalInfoList("К клиенту", inWayToClientCounter, apiInfo_all);
+      generalInfoList("От клиента", inWayFromClientCounter, apiInfo_all);
     } else if (method == "orders") {
       console.log("Метод заказы");
       createCardOrders(api);
@@ -392,7 +398,7 @@ class CardSales extends Card {
 // const cardTemplate = document.querySelector(".templateCard").content;
 const cardList = document.querySelector(".card_list");
 
-function createCardStock(api, method) {
+function createCardStock(api) {
   //  console.log(li);
 
   console.log(api);
@@ -427,8 +433,11 @@ function createCardStock(api, method) {
       params.daysOnSite;
     cardTemplate.querySelector(".inWayFromClientApi").textContent =
       params.inWayFromClient;
+    inWayFromClientCounter = inWayFromClientCounter + params.inWayFromClient;
+
     cardTemplate.querySelector(".inWayToClientApi").textContent =
       params.inWayToClient;
+    inWayToClientCounter = inWayToClientCounter + params.inWayToClient;
 
     cardTemplate.querySelector(".lastChangeDateApi").textContent =
       params.lastChangeDate;
@@ -483,8 +492,9 @@ function createCardSales(api) {
     cardTemplate.querySelector(".countryNameApi").textContent =
       params.countryName;
     cardTemplate.querySelector(".dateApi").textContent = params.date;
-    cardTemplate.querySelector(".discountPercentApi").textContent =
-      params.discountPercent;
+    cardTemplate.querySelector(
+      ".discountPercentApi"
+    ).textContent = `${params.discountPercent}%`;
     cardTemplate.querySelector(".finishedPriceApi").textContent =
       params.finishedPrice;
     cardTemplate.querySelector(".forPayApi").textContent = params.forPay;
@@ -505,7 +515,9 @@ function createCardSales(api) {
       params.priceWithDisc;
     cardTemplate.querySelector(".promoCodeDiscountApi").textContent =
       params.promoCodeDiscount;
-    cardTemplate.querySelector(".quantityApi").textContent = params.quantity;
+    cardTemplate.querySelector(
+      ".quantityApi"
+    ).textContent = `${params.quantity}шт.`;
     cardTemplate.querySelector(".regionNameApi").textContent =
       params.regionName;
     cardTemplate.querySelector(".saleIDApi").textContent = params.saleID;
@@ -514,8 +526,9 @@ function createCardSales(api) {
     cardTemplate.querySelector(".supplierArticleApi").textContent =
       params.supplierArticle;
     cardTemplate.querySelector(".techSizeApi").textContent = params.techSize;
-    cardTemplate.querySelector(".totalPriceApi").textContent =
-      params.totalPrice;
+    cardTemplate.querySelector(
+      ".totalPriceApi"
+    ).textContent = `${params.totalPrice} руб.`;
     cardTemplate.querySelector(".warehouseNameApi").textContent =
       params.warehouseName;
     cardTemplate.querySelector(".numberApi").textContent = params.number;
@@ -525,9 +538,21 @@ function createCardSales(api) {
     // isRealization: false;
     // isSupply: true;
     const li = document.createElement("li");
-    params.quantity > 0
-      ? li.classList.add("card_sales")
-      : li.classList.add("card_sales_refund");
+    li.classList.add("card_li");
+    let numberSale = params.saleID;
+    console.log(numberSale.substring(0, 1));
+    let indexSale = numberSale.substring(0, 1);
+    console.log(indexSale);
+    if (numberSale.substring(0, 1) == "S") {
+      li.classList.add("card_sales");
+    } else if (numberSale.substring(0, 1) == "R") {
+      li.classList.add("card_sales_refund");
+    } else if (numberSale.substring(0, 1) == "D") {
+      li.classList.add("card_sales_doplata");
+    }
+    // params.quantity > 0
+    //   ? li.classList.add("card_sales")
+    //   : li.classList.add("card_sales_refund");
     li.append(cardTemplate.cloneNode(true));
     cardList.append(li);
     console.log(cardTemplate);
@@ -596,6 +621,7 @@ function createCardOrders(api) {
 
 function itogInfoApi(selector, api, date, flag, text) {
   let list = document.createElement("li");
+  list.classList.add("generalInfo");
 
   if (flag) {
     list.textContent = `${text} за ${date}: ${api.length} шт.`;
@@ -603,6 +629,16 @@ function itogInfoApi(selector, api, date, flag, text) {
     list.textContent = `${text} c ${date} по настоящее время: ${api.length} шт.`;
   }
   selector.append(list);
+}
+
+function generalInfoList(name, inWayTo, selector) {
+  // select = document.querySelector(selector);
+  let list = document.createElement("li");
+  list.classList.add("secondaryInfo");
+  list.textContent = `${name}: ${inWayTo}`;
+  selector.append(list);
+  console.log(list);
+  // console.log(list);
 }
 
 // const createCardButton = document.querySelector(".createCardButton");
