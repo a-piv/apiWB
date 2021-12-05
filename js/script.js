@@ -50,28 +50,44 @@ const buttonGetStocks = document.querySelector(".buttonGetStocks");
 const buttonGetOrders = document.querySelector(".buttonGetOrders");
 const buttonGetSales = document.querySelector(".buttonGetSales");
 
+const buttonGetIncomes = document.querySelector(".buttonGetIncomes");
+const buttonGetreportDetailByPeriod = document.querySelector(
+  ".buttonGetreportDetailByPeriod"
+);
+
 // const stockURL =
 // "https://suppliers-stats.wildberries.ru/api/v1/supplier/stocks?dateFrom=2021-10-13T00:00:00.000Z&key=OGRlMzFjMTQtYThiNy00ZTc0LWI4N2ItOTdlYTg5NmU0OTdh";
-const sales = "sales";
-const orders = "orders";
-const stocks = "stocks";
 
 let inWayToClientCounter = 0;
 let inWayFromClientCounter = 0;
+
+let salesOkCounter = 0;
+let salesRefundCounter = 0;
+
+let orderOkCounter = 0;
+let orderCancelCounter = 0;
+let salesDoplataCounter = 0;
 
 // document.querySelector(".buttonGetTest").addEventListener("click", () => {
 //   console.log("чик");
 // });
 
 buttonGetStocks.addEventListener("click", () => {
-  getJson(stocks);
+  getJson("stocks");
 });
 buttonGetOrders.addEventListener("click", () => {
-  getJson(orders);
+  getJson("orders");
 });
 buttonGetSales.addEventListener("click", () => {
-  getJson(sales);
+  getJson("sales");
 });
+
+buttonGetIncomes.addEventListener("click", () => {
+  getJson("incomes");
+});
+// buttonGetreportDetailByPeriod.addEventListener("click", () => {
+//   getJson("buttonGetreportDetailByPeriod");
+// });
 
 //const imageArt-big = "https://images.wbstatic.net/c516x688/new/";
 const imageArt = "https://img1.wbstatic.net/tm/new/";
@@ -128,10 +144,23 @@ function getJson(method) {
       console.log("Метод заказы");
       createCardOrders(api);
       itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего заказов");
+      generalInfoList("Успешных заказов", orderOkCounter, apiInfo_all);
+      generalInfoList("Отменёных заказов", orderCancelCounter, apiInfo_all);
     } else if (method == "sales") {
       console.log("Метод продажи");
       createCardSales(api);
       itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего продаж и возвратов");
+      generalInfoList("Продаж", salesOkCounter, apiInfo_all);
+      generalInfoList("Возвратов", salesRefundCounter, apiInfo_all);
+      // generalInfoList("Доплат", salesDoplataCounter, apiInfo_all);
+
+      // if (salesDoplataCounter > 0) {
+      //   generalInfoList("Доплат", salesRefundCounter, apiInfo_all);
+      // }
+    } else if (method == "incomes") {
+      createCardIncomes(api);
+    } else if (method == "buttonGetreportDetailByPeriod") {
+      console.log("Клик buttonGetreportDetailByPeriod");
     } else {
       console.log("Не понятный метод");
     }
@@ -545,10 +574,13 @@ function createCardSales(api) {
     console.log(indexSale);
     if (numberSale.substring(0, 1) == "S") {
       li.classList.add("card_sales");
+      salesOkCounter++;
     } else if (numberSale.substring(0, 1) == "R") {
       li.classList.add("card_sales_refund");
+      salesRefundCounter++;
     } else if (numberSale.substring(0, 1) == "D") {
       li.classList.add("card_sales_doplata");
+      salesDoplataCounter++;
     }
     // params.quantity > 0
     //   ? li.classList.add("card_sales")
@@ -614,6 +646,12 @@ function createCardOrders(api) {
     // isSupply: true;
     const li = document.createElement("li");
     li.classList.add("card_orders");
+    if (params.isCancel) {
+      orderCancelCounter++;
+      li.classList.add("card_orders_cancel");
+    } else {
+      orderOkCounter++;
+    }
     li.append(cardTemplate.cloneNode(true));
     cardList.append(li);
   });
@@ -652,3 +690,54 @@ function generalInfoList(name, inWayTo, selector) {
 // class Card {
 //   constructor() {}
 // }
+
+function createCardIncomes(api) {
+  const template = `templateCard-incomes`;
+  console.log(template);
+  console.log(api);
+  api.forEach(function (params, i) {
+    let nmid = params.nmId + "";
+    console.log(params.nmId);
+
+    const cardTemplate = document.querySelector(`.${template}`).content;
+
+    cardTemplate.querySelector(".number-card").textContent = `${i + 1}.`;
+    cardTemplate
+      .querySelector(".photo-card-href")
+      .setAttribute(
+        "href",
+        `https://www.wildberries.ru/catalog/${params.nmId}/detail.aspx`
+      );
+    console.log(cardTemplate);
+    let image = `${imageArt}${nmid.substring(0, 4)}0000/${params.nmId}-1.jpg`;
+    console.log(image);
+    cardTemplate.querySelector(".photo-card_small").src = `${image}`;
+
+    cardTemplate.querySelector(".incomeidApi").textContent = params.incomeId;
+    cardTemplate.querySelector(".numberApi").textContent = params.number;
+    cardTemplate.querySelector(".dateApi").textContent = params.date;
+    cardTemplate.querySelector(".lastChangeDateApi").textContent =
+      params.lastChangeDate;
+    cardTemplate.querySelector(".supplierArticleApi").textContent =
+      params.supplierArticle;
+    cardTemplate.querySelector(".techSizeApi").textContent = params.techSize;
+    cardTemplate.querySelector(".barcodeApi").textContent = params.barcode;
+    cardTemplate.querySelector(".quantityApi").textContent = params.quantity;
+    cardTemplate.querySelector(".totalPriceApi").textContent =
+      params.totalPrice;
+    cardTemplate.querySelector(".dateCloseApi").textContent = params.dateClose;
+    cardTemplate.querySelector(".warehouseNameApi").textContent =
+      params.warehouseName;
+    cardTemplate.querySelector(".nmidApi").textContent = params.nmId;
+    cardTemplate.querySelector(".statusApi").textContent = params.status;
+
+    // Не задействованы параметры из апи:
+    // SCCode: "";
+    // isRealization: false;
+    // isSupply: true;
+    const li = document.createElement("li");
+    li.classList.add("card_orders");
+    li.append(cardTemplate.cloneNode(true));
+    cardList.append(li);
+  });
+}
