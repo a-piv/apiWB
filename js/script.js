@@ -118,7 +118,7 @@ flagApi.addEventListener("click", function (event) {
 function getJson(method) {
   const dateApi = document.querySelector("#dateApi").value;
   const api = document.querySelector(".inputApi").value;
-
+  console.log(document.querySelector(".product"));
   console.log(flag);
   const stockURL = `https://suppliers-stats.wildberries.ru/api/v1/supplier/${method}?dateFrom=${dateApi}T00:00:00.000Z&flag=${flag}&key=${api}`;
   console.log(stockURL);
@@ -137,6 +137,7 @@ function getJson(method) {
     // createCardStock(api, method);
     if (method == "stocks") {
       console.log("Метод склад");
+
       createCardStock(api);
       itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего товаров");
       // console.log(inWayToClientCounter, inWayFromClientCounter);
@@ -156,6 +157,8 @@ function getJson(method) {
       itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего продаж и возвратов");
       generalInfoList("Продаж", salesOkCounter, apiInfo_all);
       generalInfoList("Возвратов", salesRefundCounter, apiInfo_all);
+      generalInfoList("Доплат", salesDoplataCounter, apiInfo_all);
+
       // generalInfoList("Доплат", salesDoplataCounter, apiInfo_all);
 
       // if (salesDoplataCounter > 0) {
@@ -439,7 +442,6 @@ function createCardStock(api) {
     let nmid = params.nmId + "";
 
     const cardTemplate = document.querySelector(".templateCard-stocks").content;
-    console.log(cardTemplate.querySelector(".photo-card-href"));
 
     cardTemplate
       .querySelector(".photo-card-href")
@@ -450,9 +452,8 @@ function createCardStock(api) {
 
     cardTemplate.querySelector(".number-card").textContent = `${i + 1}.`;
     let image = `${imageArt}${nmid.substring(0, 4)}0000/${params.nmId}-1.jpg`;
-    console.log(image);
-    cardTemplate.querySelector(".photo-card_small").src = `${image}`;
 
+    cardTemplate.querySelector(".photo-card_small").src = `${image}`;
     cardTemplate.querySelector(".name").textContent = params.name;
     cardTemplate.querySelector(".barcodeApi").textContent = params.barcode;
     cardTemplate.querySelector(".discountApi").textContent = params.Discount;
@@ -478,13 +479,18 @@ function createCardStock(api) {
     cardTemplate.querySelector(".nmidAPI").textContent = params.nmId;
 
     cardTemplate.querySelector(".quantityAPI").textContent = params.quantity;
-    console.log(params.quantity, typeof params.quantity);
-    // if (params.quantity == 0) {
-    //   cardTemplate.querySelector(
-    //     ".card-comment"
-    //   ).textContent = `${params.quantity}`;
+
+    if (params.quantity == 0) {
+      console.log(params.quantity, typeof params.quantity);
+      cardTemplate.querySelector(
+        ".card-comment"
+      ).textContent = `${params.quantity}`;
+    } else {
+      console.log("dctt");
+    }
+
     // }
-    console.log(params.quantity);
+    // console.log(params.quantity);
     cardTemplate.querySelector(".quantityFullApi").textContent =
       params.quantityFull;
     cardTemplate.querySelector(".quantityNotInOrdersApi").textContent =
