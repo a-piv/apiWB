@@ -128,7 +128,9 @@ function getJson(method) {
   xhr.responseType = "json";
   xhr.onload = () => {
     let api = "[]";
-    xhr.status >= 400 ? console.log("Ошибка!") : (api = xhr.response);
+    xhr.status >= 400
+      ? alert("Ошибка! Попробуйте позже")
+      : (api = xhr.response);
     console.log(method);
     console.log(typeof method);
     console.log(api.length);
@@ -145,7 +147,9 @@ function getJson(method) {
       createCardOrders(api);
       itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего заказов");
       generalInfoList("Успешных заказов", orderOkCounter, apiInfo_all);
-      generalInfoList("Отменёных заказов", orderCancelCounter, apiInfo_all);
+      if (orderCancelCounter > 0) {
+        generalInfoList("Отменёных заказов", orderCancelCounter, apiInfo_all);
+      }
     } else if (method == "sales") {
       console.log("Метод продажи");
       createCardSales(api);
@@ -474,6 +478,13 @@ function createCardStock(api) {
     cardTemplate.querySelector(".nmidAPI").textContent = params.nmId;
 
     cardTemplate.querySelector(".quantityAPI").textContent = params.quantity;
+    console.log(params.quantity, typeof params.quantity);
+    // if (params.quantity == 0) {
+    //   cardTemplate.querySelector(
+    //     ".card-comment"
+    //   ).textContent = `${params.quantity}`;
+    // }
+    console.log(params.quantity);
     cardTemplate.querySelector(".quantityFullApi").textContent =
       params.quantityFull;
     cardTemplate.querySelector(".quantityNotInOrdersApi").textContent =
@@ -554,7 +565,10 @@ function createCardSales(api) {
     cardTemplate.querySelector(".subjectApi").textContent = params.subject;
     cardTemplate.querySelector(".supplierArticleApi").textContent =
       params.supplierArticle;
-    cardTemplate.querySelector(".techSizeApi").textContent = params.techSize;
+    if (params.techSize > 0) {
+      cardTemplate.querySelector(".techSizeApi").textContent = params.techSize;
+    }
+
     cardTemplate.querySelector(
       ".totalPriceApi"
     ).textContent = `${params.totalPrice} руб.`;
