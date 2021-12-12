@@ -64,6 +64,9 @@ let inWayFromClientCounter = 0;
 let salesOkCounter = 0;
 let salesRefundCounter = 0;
 
+let salesStornoRefundCounter = 0;
+let salesStornoalesCounter = 0;
+
 let orderOkCounter = 0;
 let orderCancelCounter = 0;
 let salesDoplataCounter = 0;
@@ -158,6 +161,12 @@ function getJson(method) {
       generalInfoList("Продаж", salesOkCounter, apiInfo_all);
       generalInfoList("Возвратов", salesRefundCounter, apiInfo_all);
       generalInfoList("Доплат", salesDoplataCounter, apiInfo_all);
+      generalInfoList(
+        "Сторно-возвратов",
+        salesStornoRefundCounter,
+        apiInfo_all
+      );
+      generalInfoList("Сторно-Доплат", salesStornoalesCounter, apiInfo_all);
 
       // generalInfoList("Доплат", salesDoplataCounter, apiInfo_all);
 
@@ -538,9 +547,8 @@ function createCardSales(api) {
     cardTemplate.querySelector(".countryNameApi").textContent =
       params.countryName;
     cardTemplate.querySelector(".dateApi").textContent = params.date;
-    cardTemplate.querySelector(
-      ".discountPercentApi"
-    ).textContent = `${params.discountPercent}%`;
+    cardTemplate.querySelector(".discountPercentApi").textContent =
+      params.discountPercent;
     cardTemplate.querySelector(".finishedPriceApi").textContent =
       params.finishedPrice;
     cardTemplate.querySelector(".forPayApi").textContent = params.forPay;
@@ -561,9 +569,7 @@ function createCardSales(api) {
       params.priceWithDisc;
     cardTemplate.querySelector(".promoCodeDiscountApi").textContent =
       params.promoCodeDiscount;
-    cardTemplate.querySelector(
-      ".quantityApi"
-    ).textContent = `${params.quantity}шт.`;
+    cardTemplate.querySelector(".quantityApi").textContent = params.quantity;
     cardTemplate.querySelector(".regionNameApi").textContent =
       params.regionName;
     cardTemplate.querySelector(".saleIDApi").textContent = params.saleID;
@@ -575,9 +581,8 @@ function createCardSales(api) {
       cardTemplate.querySelector(".techSizeApi").textContent = params.techSize;
     }
 
-    cardTemplate.querySelector(
-      ".totalPriceApi"
-    ).textContent = `${params.totalPrice} руб.`;
+    cardTemplate.querySelector(".totalPriceApi").textContent =
+      params.totalPrice;
     cardTemplate.querySelector(".warehouseNameApi").textContent =
       params.warehouseName;
     cardTemplate.querySelector(".numberApi").textContent = params.number;
@@ -601,6 +606,12 @@ function createCardSales(api) {
     } else if (numberSale.substring(0, 1) == "D") {
       li.classList.add("card_sales_doplata");
       salesDoplataCounter++;
+    } else if (numberSale.substring(0, 1) == "B") {
+      li.classList.add("card_sales_storno_refund");
+      salesStornoRefundCounter++;
+    } else if (numberSale.substring(0, 1) == "A") {
+      li.classList.add("card_sales_storno_sales");
+      salesStornoalesCounter++;
     }
     // params.quantity > 0
     //   ? li.classList.add("card_sales")
