@@ -93,7 +93,7 @@ button:hover {
   width: 100%;
 }
 
-.cardHeader {
+.card-header {
   background-color: aqua;
   text-align: center;
 }
@@ -187,10 +187,6 @@ button:hover {
   font-weight: bold;
 }
 
-.discount::after {
-  content: "%";
-}
-
 .inWayToClientApi::after {
   content: " шт.";
 }
@@ -201,4 +197,62 @@ button:hover {
 
 .formula {
   color: rgb(255, 0, 0);
+}
+
+.price-productApi::after {
+  content: " руб.";
+}
+.discountApi::after {
+  content: "%";
+}
+
+.final-price::after {
+  content: " руб.";
+}
+
+.quantityAPI::after {
+  content: " шт.";
+}
+
+.quantityFullApi::after {
+  content: " шт.";
+}
+.quantityNotInOrdersApi::after {
+  content: " шт.";
+}
+.inWayToClientApi::after {
+  content: " шт.";
+}
+.inWayFromClientApi::after {
+  content: " шт.";
+}
+
+.totalPriceApi::after {
+  content: " руб.";
+}
+
+.discountPercentApi::after {
+  content: " руб.";
+}
+
+.quantityApi::after {
+  content: " шт.";
+}
+
+.promoCodeDiscountApi::after {
+  content: "%";
+}
+.sppApi::after {
+  content: "%";
+}
+
+.priceWithDiscApi::after {
+  content: " руб.";
+}
+
+.finishedPriceApi::after {
+  content: " руб.";
+}
+.forPayApi::after {
+  content: " руб.";
 }
