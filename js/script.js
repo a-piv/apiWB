@@ -577,9 +577,12 @@ function createCardSales(api) {
     cardTemplate.querySelector(".subjectApi").textContent = params.subject;
     cardTemplate.querySelector(".supplierArticleApi").textContent =
       params.supplierArticle;
-    if (params.techSize > 0) {
-      cardTemplate.querySelector(".techSizeApi").textContent = params.techSize;
-    }
+    // if (params.techSize > 0) {
+    //   cardTemplate.querySelector(
+    //     ".techSizeApi"
+    //   ).textContent = `${params.techSize}`;
+    // }
+    cardTemplate.querySelector(".techSizeApi").textContent = params.techSize;
 
     cardTemplate.querySelector(".totalPriceApi").textContent =
       params.totalPrice;
