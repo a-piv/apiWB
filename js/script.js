@@ -41,10 +41,9 @@ const quantityNotInOrders = document.querySelector(".quantityNotInOrders");
 const SCCode = document.querySelector(".SCCode");
 
 const timeApi = document.querySelector("#timeApi");
-console.log(timeApi.value);
 
 const apiInfo_all = document.querySelector(".apiInfo_all");
-// const inputApi = document.querySelector(".inputApi").value;
+//  const inputApi = document.querySelector(".inputApi").value;
 
 const buttonGetStocks = document.querySelector(".buttonGetStocks");
 const buttonGetOrders = document.querySelector(".buttonGetOrders");
@@ -54,6 +53,13 @@ const buttonGetIncomes = document.querySelector(".buttonGetIncomes");
 const buttonGetreportDetailByPeriod = document.querySelector(
   ".buttonGetreportDetailByPeriod"
 );
+
+// import {
+//   buttonGetStocks,
+//   buttonGetOrders,
+//   buttonGetSales,
+//   buttonGetIncomes,
+// } from "../utils/constants.js";
 
 // const stockURL =
 // "https://suppliers-stats.wildberries.ru/api/v1/supplier/stocks?dateFrom=2021-10-13T00:00:00.000Z&key=OGRlMzFjMTQtYThiNy00ZTc0LWI4N2ItOTdlYTg5NmU0OTdh";
@@ -121,11 +127,9 @@ flagApi.addEventListener("click", function (event) {
 function getJson(method) {
   const dateApi = document.querySelector("#dateApi").value;
   const api = document.querySelector(".inputApi").value;
-  console.log(document.querySelector(".product"));
-  console.log(flag);
   const stockURL = `https://suppliers-stats.wildberries.ru/api/v1/supplier/${method}?dateFrom=${dateApi}T00:00:00.000Z&flag=${flag}&key=${api}`;
   console.log(stockURL);
-  console.log(method);
+
   const xhr = new XMLHttpRequest();
   xhr.open("GET", stockURL);
   xhr.responseType = "json";
@@ -134,13 +138,10 @@ function getJson(method) {
     xhr.status >= 400
       ? alert("Ошибка! Попробуйте позже")
       : (api = xhr.response);
-    console.log(method);
-    console.log(typeof method);
     console.log(api.length);
-    // createCardStock(api, method);
+
     if (method == "stocks") {
       console.log("Метод склад");
-
       createCardStock(api);
       itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего товаров");
       // console.log(inWayToClientCounter, inWayFromClientCounter);
@@ -149,24 +150,24 @@ function getJson(method) {
     } else if (method == "orders") {
       console.log("Метод заказы");
       createCardOrders(api);
-      itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего заказов");
-      generalInfoList("Успешных заказов", orderOkCounter, apiInfo_all);
+      // itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего заказов");
+      // generalInfoList("Успешных заказов", orderOkCounter, apiInfo_all);
       if (orderCancelCounter > 0) {
         generalInfoList("Отменёных заказов", orderCancelCounter, apiInfo_all);
       }
     } else if (method == "sales") {
       console.log("Метод продажи");
       createCardSales(api);
-      itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего продаж и возвратов");
-      generalInfoList("Продаж", salesOkCounter, apiInfo_all);
-      generalInfoList("Возвратов", salesRefundCounter, apiInfo_all);
-      generalInfoList("Доплат", salesDoplataCounter, apiInfo_all);
-      generalInfoList(
-        "Сторно-возвратов",
-        salesStornoRefundCounter,
-        apiInfo_all
-      );
-      generalInfoList("Сторно-Доплат", salesStornoalesCounter, apiInfo_all);
+      // itogInfoApi(apiInfo_all, api, dateApi, flag, "Всего продаж и возвратов");
+      // generalInfoList("Продаж", salesOkCounter, apiInfo_all);
+      // generalInfoList("Возвратов", salesRefundCounter, apiInfo_all);
+      // generalInfoList("Доплат", salesDoplataCounter, apiInfo_all);
+      // generalInfoList(
+      //   "Сторно-возвратов",
+      //   salesStornoRefundCounter,
+      //   apiInfo_all
+      // );
+      // generalInfoList("Сторно-Доплат", salesStornoalesCounter, apiInfo_all);
 
       // generalInfoList("Доплат", salesDoplataCounter, apiInfo_all);
 
@@ -266,7 +267,7 @@ class Section {
     // Переберем массив _initialArray с начальными сообщениями
     this._initialArray.forEach((item) => {
       // Исходя из поля isOwner создадим экземпляры классов
-      const card = item.isOwner
+      const card = this._initialArray.isOwner
         ? new UserCard(item, ".card-template_type_user")
         : new DefaultCard(item, ".card-template_type_default");
 
@@ -283,19 +284,7 @@ class Section {
   }
 }
 
-class Card {
-  constructor(cardSelector) {
-    this.cardSelector = cardSelector;
-  }
-  _getTemplate() {
-    const cardElement = document
-      .querySelector(this.cardSelector)
-      .content.cloneNode(true);
-    console.log(cardElement);
-  }
-}
-
-class CardStock extends Card {
+class CardStock {
   constructor(param, cardSelector) {
     (this.barcode = param.barcode),
       (this.brand = param.brand),
@@ -337,106 +326,6 @@ class CardStock extends Card {
       (this.quantityFull = param.quantityFull),
       (this.quantityNotInOrders = param.quantityNotInOrders),
       (this.SCCode = param.SCCode);
-  }
-}
-
-class CardOrders extends Card {
-  constructor(param) {
-    (this.barcode = param.barcode),
-      (this.brand = param.brand),
-      (this.category = param.category),
-      (this.lastChangeDate = param.lastChangeDate),
-      (this.nmId = param.nmId),
-      (this.quantity = param.quantity),
-      (this.subject = param.subject),
-      (this.supplierArticle = param.supplierArticle),
-      (this.techSize = param.techSize),
-      (this.warehouseName = param.warehouseName),
-      (this.barcode = param.barcode),
-      (this.brand = param.brand),
-      (this.category = param.category),
-      (this.lastChangeDate = param.lastChangeDate),
-      (this.nmId = param.nmId),
-      (this.quantity = param.quantity),
-      (this.subject = param.subject),
-      (this.supplierArticle = param.supplierArticle),
-      (this.techSize = param.techSize),
-      (this.warehouseName = param.warehouseName),
-      (this.barcode = param.barcode),
-      (this.brand = param.brand),
-      (this.category = param.category),
-      (this.lastChangeDate = param.lastChangeDate),
-      (this.nmId = param.nmId),
-      (this.quantity = param.quantity),
-      (this.subject = param.subject),
-      (this.supplierArticle = param.supplierArticle),
-      (this.techSize = param.techSize),
-      (this.warehouseName = param.warehouseName),
-      (this.daysOnSite = param.daysOnSite),
-      (this.Discount = param.Discount),
-      (this.inWayFromClient = param.inWayFromClient),
-      (this.inWayToClient = param.inWayToClient),
-      (this.isRealization = param.isRealization),
-      (this.isSupply = param.isSupply),
-      (this.Price = param.Price),
-      (this.quantityFull = param.quantityFull),
-      (this.quantityNotInOrders = param.quantityNotInOrders),
-      (this.SCCode = param.SCCode);
-  }
-}
-
-class CardSales extends Card {
-  constructor(param) {
-    (this.barcode = param.barcode),
-      (this.brand = param.brand),
-      (this.category = param.category),
-      (this.lastChangeDate = param.lastChangeDate),
-      (this.nmId = param.nmId),
-      (this.quantity = param.quantity),
-      (this.subject = param.subject),
-      (this.supplierArticle = param.supplierArticle),
-      (this.techSize = param.techSize),
-      (this.warehouseName = param.warehouseName),
-      (this.barcode = param.barcode),
-      (this.brand = param.brand),
-      (this.category = param.category),
-      (this.lastChangeDate = param.lastChangeDate),
-      (this.nmId = param.nmId),
-      (this.quantity = param.quantity),
-      (this.subject = param.subject),
-      (this.supplierArticle = param.supplierArticle),
-      (this.techSize = param.techSize),
-      (this.warehouseName = param.warehouseName),
-      (this.barcode = param.barcode),
-      (this.brand = param.brand),
-      (this.category = param.category),
-      (this.lastChangeDate = param.lastChangeDate),
-      (this.nmId = param.nmId),
-      (this.quantity = param.quantity),
-      (this.subject = param.subject),
-      (this.supplierArticle = param.supplierArticle),
-      (this.techSize = param.techSize),
-      (this.warehouseName = param.warehouseName),
-      (this.countryName = param.countryName),
-      (this.date = param.date),
-      (this.discountPercent = param.discountPercent),
-      (this.finishedPrice = param.finishedPrice),
-      (this.forPay = param.forPay),
-      (this.gNumber = param.gNumber),
-      (this.incomeID = param.incomeID),
-      (this.isRealization = param.isRealization),
-      (this.IsStorno = param.IsStorno),
-      (this.isSupply = param.isSupply),
-      (this.oblastOkrugName = param.oblastOkrugName),
-      (this.odid = param.odid),
-      (this.orderId = param.orderId),
-      (this.priceWithDisc = param.priceWithDisc),
-      (this.promoCodeDiscount = param.promoCodeDiscount),
-      (this.regionName = param.regionName),
-      (this.saleID = param.saleID),
-      (this.spp = param.spp),
-      (this.totalPrice = param.totalPrice),
-      (this.number = param.number);
   }
 }
 
@@ -495,7 +384,7 @@ function createCardStock(api) {
         ".card-comment"
       ).textContent = `${params.quantity}`;
     } else {
-      console.log("dctt");
+      console.log("Кол-во не нулевое");
     }
 
     // }
@@ -522,175 +411,6 @@ function createCardStock(api) {
   });
 }
 
-function createCardSales(api) {
-  console.log(api);
-  api.forEach(function (params, i) {
-    let nmid = params.nmId + "";
-    console.log(params.nmId);
-
-    const cardTemplate = document.querySelector(".templateCard-sales").content;
-    cardTemplate.querySelector(".number-card").textContent = `${i + 1}.`;
-    cardTemplate
-      .querySelector(".photo-card-href")
-      .setAttribute(
-        "href",
-        `https://www.wildberries.ru/catalog/${params.nmId}/detail.aspx`
-      );
-
-    let image = `${imageArt}${nmid.substring(0, 4)}0000/${params.nmId}-1.jpg`;
-    console.log(image);
-    cardTemplate.querySelector(".photo-card_small").src = `${image}`;
-
-    cardTemplate.querySelector(".barcodeApi").textContent = params.barcode;
-    cardTemplate.querySelector(".brandApi").textContent = params.brand;
-    cardTemplate.querySelector(".categoryApi").textContent = params.category;
-    cardTemplate.querySelector(".countryNameApi").textContent =
-      params.countryName;
-    cardTemplate.querySelector(".dateApi").textContent = params.date;
-    cardTemplate.querySelector(".discountPercentApi").textContent =
-      params.discountPercent;
-    cardTemplate.querySelector(".finishedPriceApi").textContent =
-      params.finishedPrice;
-    cardTemplate.querySelector(".forPayApi").textContent = params.forPay;
-    cardTemplate.querySelector(".gNumberApi").textContent = params.gNumber;
-    cardTemplate.querySelector(".incomeIDApi").textContent = params.incomeID;
-    cardTemplate.querySelector(".isRealizationApi").textContent =
-      params.isRealization;
-    cardTemplate.querySelector(".IsStornoApi").textContent = params.IsStorno;
-    cardTemplate.querySelector(".isSupplyApi").textContent = params.isSupply;
-    cardTemplate.querySelector(".lastChangeDateApi").textContent =
-      params.lastChangeDate;
-    cardTemplate.querySelector(".nmIdApi").textContent = params.nmId;
-    cardTemplate.querySelector(".oblastOkrugNameApi").textContent =
-      params.oblastOkrugName;
-    cardTemplate.querySelector(".odidApi").textContent = params.odid;
-    cardTemplate.querySelector(".orderIdApi").textContent = params.orderId;
-    cardTemplate.querySelector(".priceWithDiscApi").textContent =
-      params.priceWithDisc;
-    cardTemplate.querySelector(".promoCodeDiscountApi").textContent =
-      params.promoCodeDiscount;
-    cardTemplate.querySelector(".quantityApi").textContent = params.quantity;
-    cardTemplate.querySelector(".regionNameApi").textContent =
-      params.regionName;
-    cardTemplate.querySelector(".saleIDApi").textContent = params.saleID;
-    cardTemplate.querySelector(".sppApi").textContent = params.spp;
-    cardTemplate.querySelector(".subjectApi").textContent = params.subject;
-    cardTemplate.querySelector(".supplierArticleApi").textContent =
-      params.supplierArticle;
-    // if (params.techSize > 0) {
-    //   cardTemplate.querySelector(
-    //     ".techSizeApi"
-    //   ).textContent = `${params.techSize}`;
-    // }
-    cardTemplate.querySelector(".techSizeApi").textContent = params.techSize;
-
-    cardTemplate.querySelector(".totalPriceApi").textContent =
-      params.totalPrice;
-    cardTemplate.querySelector(".warehouseNameApi").textContent =
-      params.warehouseName;
-    cardTemplate.querySelector(".numberApi").textContent = params.number;
-
-    // Не задействованы параметры из апи:
-    // SCCode: "";
-    // isRealization: false;
-    // isSupply: true;
-    const li = document.createElement("li");
-    li.classList.add("card_li");
-    let numberSale = params.saleID;
-    console.log(numberSale.substring(0, 1));
-    let indexSale = numberSale.substring(0, 1);
-    console.log(indexSale);
-    if (numberSale.substring(0, 1) == "S") {
-      li.classList.add("card_sales");
-      salesOkCounter++;
-    } else if (numberSale.substring(0, 1) == "R") {
-      li.classList.add("card_sales_refund");
-      salesRefundCounter++;
-    } else if (numberSale.substring(0, 1) == "D") {
-      li.classList.add("card_sales_doplata");
-      salesDoplataCounter++;
-    } else if (numberSale.substring(0, 1) == "B") {
-      li.classList.add("card_sales_storno_refund");
-      salesStornoRefundCounter++;
-    } else if (numberSale.substring(0, 1) == "A") {
-      li.classList.add("card_sales_storno_sales");
-      salesStornoalesCounter++;
-    }
-    // params.quantity > 0
-    //   ? li.classList.add("card_sales")
-    //   : li.classList.add("card_sales_refund");
-    li.append(cardTemplate.cloneNode(true));
-    cardList.append(li);
-    console.log(cardTemplate);
-  });
-}
-
-function createCardOrders(api) {
-  //  console.log(li);
-  const template = `templateCard-orders`;
-  console.log(template);
-  console.log(api);
-  api.forEach(function (params, i) {
-    let nmid = params.nmId + "";
-    console.log(params.nmId);
-
-    const cardTemplate = document.querySelector(`.${template}`).content;
-
-    cardTemplate.querySelector(".number-card").textContent = `${i + 1}.`;
-    cardTemplate
-      .querySelector(".photo-card-href")
-      .setAttribute(
-        "href",
-        `https://www.wildberries.ru/catalog/${params.nmId}/detail.aspx`
-      );
-    console.log(cardTemplate);
-    let image = `${imageArt}${nmid.substring(0, 4)}0000/${params.nmId}-1.jpg`;
-    console.log(image);
-    cardTemplate.querySelector(".photo-card_small").src = `${image}`;
-
-    cardTemplate.querySelector(".barcodeApi").textContent = params.barcode;
-    cardTemplate.querySelector(".brandApi").textContent = params.brand;
-    cardTemplate.querySelector(".cancel_dtApi").textContent = params.cancel_dt;
-    cardTemplate.querySelector(".categoryApi").textContent = params.category;
-    cardTemplate.querySelector(".dateApi").textContent = params.date;
-    cardTemplate.querySelector(".discountPercentApi").textContent =
-      params.discountPercent;
-    cardTemplate.querySelector(".gNumberApi").textContent = params.gNumber;
-    cardTemplate.querySelector(".incomeIDApi").textContent = params.incomeID;
-    cardTemplate.querySelector(".isCancelApi").textContent = params.isCancel;
-    cardTemplate.querySelector(".lastChangeDateApi").textContent =
-      params.lastChangeDate;
-    cardTemplate.querySelector(".nmIdApi").textContent = params.nmId;
-    cardTemplate.querySelector(".numberApi").textContent = params.number;
-    cardTemplate.querySelector(".oblastApi").textContent = params.oblast;
-    cardTemplate.querySelector(".odidApi").textContent = params.odid;
-    cardTemplate.querySelector(".quantityApi").textContent = params.quantity;
-    cardTemplate.querySelector(".subjectApi").textContent = params.subject;
-    cardTemplate.querySelector(".supplierArticleApi").textContent =
-      params.supplierArticle;
-    cardTemplate.querySelector(".techSizeApi").textContent = params.techSize;
-    cardTemplate.querySelector(".totalPriceApi").textContent =
-      params.totalPrice;
-    cardTemplate.querySelector(".warehouseNameApi").textContent =
-      params.warehouseName;
-
-    // Не задействованы параметры из апи:
-    // SCCode: "";
-    // isRealization: false;
-    // isSupply: true;
-    const li = document.createElement("li");
-    li.classList.add("card_orders");
-    if (params.isCancel) {
-      orderCancelCounter++;
-      li.classList.add("card_orders_cancel");
-    } else {
-      orderOkCounter++;
-    }
-    li.append(cardTemplate.cloneNode(true));
-    cardList.append(li);
-  });
-}
-
 function itogInfoApi(selector, api, date, flag, text) {
   let list = document.createElement("li");
   list.classList.add("generalInfo");
@@ -703,6 +423,7 @@ function itogInfoApi(selector, api, date, flag, text) {
   selector.append(list);
 }
 
+// Счетчик
 function generalInfoList(name, inWayTo, selector) {
   // select = document.querySelector(selector);
   let list = document.createElement("li");
@@ -711,6 +432,17 @@ function generalInfoList(name, inWayTo, selector) {
   selector.append(list);
   console.log(list);
   // console.log(list);
+}
+
+// Создаем ссылка на картинку в sales и orders
+function imageCrеate(nmId) {
+  // Примет ссылки на картинку https://img1.wbstatic.net/tm/new/25210000/25217028-1.jpg
+  const imageURL = "https://img1.wbstatic.net/tm/new/";
+  // https:images.wbstatic.net/c246x328/new/19190000/19195616-1.jpg
+  // const imageURL = "https://images.wbstatic.net/c246x328/new/";
+  const imagSub = String(nmId).substring(0, 4);
+  const image = `${imageURL}${imagSub}0000/${nmId}-1.jpg`;
+  return image;
 }
 
 // const createCardButton = document.querySelector(".createCardButton");
@@ -726,52 +458,53 @@ function generalInfoList(name, inWayTo, selector) {
 // }
 
 function createCardIncomes(api) {
-  const template = `templateCard-incomes`;
-  console.log(template);
   console.log(api);
-  api.forEach(function (params, i) {
-    let nmid = params.nmId + "";
-    console.log(params.nmId);
-
-    const cardTemplate = document.querySelector(`.${template}`).content;
-
-    cardTemplate.querySelector(".number-card").textContent = `${i + 1}.`;
-    cardTemplate
-      .querySelector(".photo-card-href")
-      .setAttribute(
-        "href",
-        `https://www.wildberries.ru/catalog/${params.nmId}/detail.aspx`
-      );
-    console.log(cardTemplate);
-    let image = `${imageArt}${nmid.substring(0, 4)}0000/${params.nmId}-1.jpg`;
-    console.log(image);
-    cardTemplate.querySelector(".photo-card_small").src = `${image}`;
-
-    cardTemplate.querySelector(".incomeidApi").textContent = params.incomeId;
-    cardTemplate.querySelector(".numberApi").textContent = params.number;
-    cardTemplate.querySelector(".dateApi").textContent = params.date;
-    cardTemplate.querySelector(".lastChangeDateApi").textContent =
-      params.lastChangeDate;
-    cardTemplate.querySelector(".supplierArticleApi").textContent =
-      params.supplierArticle;
-    cardTemplate.querySelector(".techSizeApi").textContent = params.techSize;
-    cardTemplate.querySelector(".barcodeApi").textContent = params.barcode;
-    cardTemplate.querySelector(".quantityApi").textContent = params.quantity;
-    cardTemplate.querySelector(".totalPriceApi").textContent =
-      params.totalPrice;
-    cardTemplate.querySelector(".dateCloseApi").textContent = params.dateClose;
-    cardTemplate.querySelector(".warehouseNameApi").textContent =
-      params.warehouseName;
-    cardTemplate.querySelector(".nmidApi").textContent = params.nmId;
-    cardTemplate.querySelector(".statusApi").textContent = params.status;
-
-    // Не задействованы параметры из апи:
-    // SCCode: "";
-    // isRealization: false;
-    // isSupply: true;
-    const li = document.createElement("li");
-    li.classList.add("card_orders");
-    li.append(cardTemplate.cloneNode(true));
-    cardList.append(li);
+  api.forEach((params, i) => {
+    // console.log(params);
+    const card = new Incomes(params, i);
+    const cardIncomes = card._generateCardIncomes();
+    console.log(cardIncomes);
+    document.querySelector(".card_list").append(cardIncomes);
   });
+}
+
+function createCardSales(api) {
+  console.log(api);
+  counterSalesAll = 0;
+  counterSales = 0;
+  counterRefund = 0;
+  counterDoplata = 0;
+  counterB_stornoVozvrat = 0;
+  counterA_stornoSale = 0;
+  summSales = 0;
+  summRefund = 0;
+  summDoplata = 0;
+  api.forEach((params, i) => {
+    //   let li = document.createElement("li");
+    //   li.classList.add("card_li");
+    //   document.querySelector(".card_list").append(li);
+    const card = new Sales(params, i);
+    const cardIncomes = card._cardBackgroundSales();
+
+    // const d = card._cardBl();
+    // console.log(`Всего записей: ${params.length}`);
+    // console.log(`Сумма продаж: ${params.priceWithDisc}`);
+    // li.append(cardIncomes);
+  });
+
+  counterAllSales();
+}
+
+function createCardOrders(api) {
+  counterOrdersOk = 0;
+  counterOrdersCansel = 0;
+  summOrders = 0;
+  summOrdersCansel = 0;
+  counterNmIdNull = 0;
+
+  api.forEach((params, i) => {
+    const orders = new Orders(params, i);
+    const cardOrdersssss = orders._cardBackgroundOrders();
+  });
+  counterAllOrders();
 }
